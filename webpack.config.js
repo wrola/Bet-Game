@@ -3,17 +3,12 @@ var path = require('path');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require("webpack");
-var firebase = require("firebase/app");
-require("firebase/auth");
-require("firebase/database");
-require("firebase/firestore");
-require("firebase/messaging");
-require("firebase/functions");
+
 
 module.exports = {
     devtool: 'cheap-eval-source-map',
     entry: {
-        main: path.join(__dirname, 'js', 'zadanie01.jsx')
+        main: path.join(__dirname, 'js', 'sketch.jsx')
     },
     output: {
         path: path.join(__dirname, 'dist'),

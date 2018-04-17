@@ -67,3 +67,32 @@ document.addEventListener('DOMContentLoaded', function(){
         document.getElementById('app')
     );
 });
+
+    //
+    // team_id
+    // integer (optional) Example: 432
+    // Search for matches by team
+    //
+    // round_ids
+    // integers (optional) Example: 12,524,56
+    // Search by rounds
+    //
+    // competition_id
+    // integer (optional) Example: 2
+    // Search by competition
+    //
+    // from
+    // datetime (optional) Example: 2014-11-19T12:00:00-03:00
+    // Matches that started after this time
+    //
+    // to
+    // datetime (optional) Example: 2014-11-24T12:00:00-04:00
+    // Matches that started before this
+    performFetch = ()=>{
+        let url = 'https://www.football-data.org/v1/competitions'+this.props.isbn
+        fetch(url).then( r =>r.json()).then(data=>{
+        this.setState({
+        data: data.items[0].volumeInfo.title
+    })
+    })
+    }
