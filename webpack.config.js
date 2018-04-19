@@ -8,7 +8,7 @@ const webpack = require("webpack");
 module.exports = {
     devtool: 'cheap-eval-source-map',
     entry: {
-        main: path.join(__dirname, 'js', 'sketch.jsx')
+        main: path.join(__dirname, 'js', 'app.jsx')
     },
     output: {
         path: path.join(__dirname, 'dist'),
@@ -36,14 +36,14 @@ module.exports = {
                 use: {loader: 'file-loader'}
             },
             {
-                test: /\.css/,
-                use: ['style-loader', 'css-loader', 'postcss-loader']
+                test: /\.css$/,
+                use: ['style-loader', 'css-loader']
             },
             {
                 test: /\.scss$/,
                 use: ExtractTextPlugin.extract({
                     fallback: "style-loader",
-                    use: ['css-loader', 'postcss-loader', 'sass-loader']
+                    use: ['css-loader', 'sass-loader']
                 })
             }
         ]

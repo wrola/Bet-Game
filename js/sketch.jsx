@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import styles from '../css/style.css';
+import styles from "../sass/main.scss";
 
 class Header extends React.Component {
     constructor(props) {
@@ -9,7 +9,8 @@ class Header extends React.Component {
     render() {
         return (
             <div>
-                <h1>The Bet Game</h1>
+                <h1 class="red">The Bet Game</h1>
+
                 <p>Score</p>
             </div>
         )
@@ -75,6 +76,7 @@ class ChooseTeam extends React.Component {
             })
         )
     }
+
     fetchOpponentsFromAPI = (url) =>{
         fetch(url,{
             headers: {'X-Auth-Token': '405e8d17c66e46e284d542c0fb7aacd5'},
