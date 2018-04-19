@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import styles from "../sass/main.scss";
+require("../sass/main.scss");
 
 class Header extends React.Component {
     constructor(props) {
@@ -8,8 +8,8 @@ class Header extends React.Component {
     }
     render() {
         return (
-            <div>
-                <h1 class="red">The Bet Game</h1>
+            <div className='header'>
+                <h1>The Bet Game</h1>
 
                 <p>Score</p>
             </div>
@@ -17,17 +17,20 @@ class Header extends React.Component {
     }
 }
 
-class Bet extends React.Component {
+class Footer extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            stake: 0
+            stake: 0,
+            options: []
         }
     }
 
+
+
     render() {
         return (
-            <div>
+            <div className='footer'>
                 <h2>The bet: {this.state.stake} </h2>
                 <input type='number'/>
                 <button type='submit'>BET</button>
@@ -39,13 +42,17 @@ class Bet extends React.Component {
     }
 }
 
-class ChooseTeam extends React.Component {
+class Main extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             team: '',
             options: [],
-            oponents: []
+            oponents: [],
+            tableLeague: [],
+            stake: 0,
+
+
         }
     }
 
@@ -54,9 +61,10 @@ class ChooseTeam extends React.Component {
             headers: {'X-Auth-Token': '405e8d17c66e46e284d542c0fb7aacd5'},
             dataType: 'json'
         }).then(r => r.json()).then(data => {
-            //console.log(data.teams);
+            const bet = (Math.random() * 10) + 1;
             this.setState({
-                options: data.teams
+                options: data.teams,
+                stake: bet
             })
         }).catch(e => {
             console.log('Błąd!!!!', e)
@@ -69,10 +77,11 @@ class ChooseTeam extends React.Component {
         this.state.options.forEach((elem,i)=>{
             if(elem.name === event.target.value){
                 this.fetchOpponentsFromAPI(elem._links.fixtures.href);
+
             }
 
         },this.setState({
-                team : event.target.value
+                team : event.target.value,
             })
         )
     }
@@ -90,48 +99,57 @@ class ChooseTeam extends React.Component {
         });
     }
 
-
     render() {
+
         return (
-            <div>
-                <label>Team</label>
-                <select onChange={(e)=>{this.handleOption(e)}}>
+            <div className="main">
+            <label>Team</label>
+                <select onChange={(e) => {this.handleOption(e)}}>
                     <option>Choose a team</option>
-                    {this.state.options.map((elem, i) => <option key={i}>{elem.name}</option>)}
-                </select>
-                <h2>Oponents
-                    {this.state.oponents.map((elem,i)=>{
-                        return <p>
-                                {console.log((elem.date))}
-                            <span className={  new Date(elem.date) > Date.now() ? '.TIMED' : '.FINISHED'}>
+                        {this.state.options.map((elem, i) => <option key={i}>{elem.name}</option>)}
+                    </select>
+                <h2>Oponents</h2>
+                    {this.state.oponents.map((elem, i) => {
+                        return <p className={new Date(elem.date) > Date.now() ? 'TIMED' : 'FINISHED'}>
+                                <span>
                                 {this.state.team === elem.awayTeamName ? elem.homeTeamName : elem.awayTeamName}
-                            </span>
-                        </p>
-                    })}
-                </h2>
-            </div>
+                                </span>
+                                </p>
+                            })
+                    }
+                </div>
         )
     }
 }
 
+class Body extends React.Component{
+    constructor(props){
+    super(props);
+    }
+    render() {
+
+        return (
+            <div className='container'>
+                <Header/>
+                <Main/>
+                <Footer/>
+            </div>
+        )
+    }
+}
 class App extends React.Component {
     constructor(props) {
         super(props);
     }
     render() {
         return (
-            <div>
-                <Header/>
-                <ChooseTeam/>
-                <Bet/>
-            </div>
-        )
-    }
+            <Body/>
+            )
+        }
 }
-
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', function(){
     ReactDOM.render(
-        <App/>,
+        <App />,
         document.getElementById('app')
     );
-})
+});

@@ -1,27 +1,54 @@
-.red {
-  border: 2px solid #FF0000; }
+*{
+  margin: 0;
+  padding: 0;
+  body{
+    background: rgba(255, 255, 220, 0.8);
+    font-family: 'Source Code Pro', monospace;
 
-.yellow {
-  border: 2px solid #FFFF00; }
+    #app {
+      display: flex;
+      justify-content: center;
 
-.green {
-  border: 2px solid #00FF00; }
+      .container {
+        width: 300px;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-top: 100px;
+        background-color: rgba(183, 222, 237, 1);
+        box-shadow: 7px 14px 68px 9px rgba(0, 0, 0, 0.75);
+        border-radius: 10%;
 
-.blue {
-  border: 2px solid #0000FF; }
+        .header {
+        }
+        .main {
+          p {
+              .FINISHED {
+                visibility: hidden;
+              }
+              .TIMED {
+                visibility: hidden;
+                span {
+                  &:nth-child(1) {
+                    visibility: visible;
+                    color: #4B0082
+                  }
+                }
+              }
+              .SCHEDULED {
+                visibility: hidden;
+              }
+              .POSTPONED {
+                visibility: hidden;
+              }
+          }
+        }
+        .footer {
 
-.turquoise {
-  border: 2px solid #40e0d0; }
-.FINISHED {
-  background-color: red;
-  display: none
-}
-.TIMED {
-  background-color: yellow
-}
-.SCHEDULED {
-  background-color: green
-}
-.POSTPONED{
-  background-color: grey
+        }
+      }
+    }
+  }
 }
