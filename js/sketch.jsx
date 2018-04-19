@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import styles from "../sass/main.scss";
+require("../sass/main.scss");
 
 class Header extends React.Component {
     constructor(props) {
@@ -103,7 +103,7 @@ class ChooseTeam extends React.Component {
                     {this.state.oponents.map((elem,i)=>{
                         return <p>
                                 {console.log((elem.date))}
-                            <span className={  new Date(elem.date) > Date.now() ? '.TIMED' : '.FINISHED'}>
+                            <span className={  new Date(elem.date) > Date.now() ? 'TIMED' : 'FINISHED'}>
                                 {this.state.team === elem.awayTeamName ? elem.homeTeamName : elem.awayTeamName}
                             </span>
                         </p>
