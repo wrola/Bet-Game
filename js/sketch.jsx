@@ -8,44 +8,24 @@ class Header extends React.Component {
     }
     render() {
         return (
-            <div>
-                <h1 class="red">The Bet Game</h1>
+            <div className='header'>
+                <h1>The Bet Game</h1>
 
                 <p>Score</p>
             </div>
         )
     }
 }
-
-class Bet extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            stake: 0
-        }
-    }
-
-    render() {
-        return (
-            <div>
-                <h2>The bet: {this.state.stake} </h2>
-                <input type='number'/>
-                <button type='submit'>BET</button>
-                <table>
-
-                </table>
-            </div>
-        )
-    }
-}
-
-class ChooseTeam extends React.Component {
+class Main extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             team: '',
             options: [],
-            oponents: []
+            oponents: [],
+            tableLeague: [],
+            stake: 0,
+            bet: 0,
         }
     }
 
@@ -54,9 +34,14 @@ class ChooseTeam extends React.Component {
             headers: {'X-Auth-Token': '405e8d17c66e46e284d542c0fb7aacd5'},
             dataType: 'json'
         }).then(r => r.json()).then(data => {
-            //console.log(data.teams);
+            const chances = ((Math.random() * 10) + 1).toFixed(2);
+            if(toString(chances).length > 4){
+                Math.round(chances)
+            };
+            console.log(chances)
             this.setState({
-                options: data.teams
+                options: data.teams,
+                stake: chances
             })
         }).catch(e => {
             console.log('Błąd!!!!', e)
@@ -69,10 +54,11 @@ class ChooseTeam extends React.Component {
         this.state.options.forEach((elem,i)=>{
                 if(elem.name === event.target.value){
                     this.fetchOpponentsFromAPI(elem._links.fixtures.href);
+
                 }
 
             },this.setState({
-                team : event.target.value
+                team : event.target.value,
             })
         )
     }
@@ -89,47 +75,84 @@ class ChooseTeam extends React.Component {
             console.log('Błąd!!!!', e)
         });
     }
+    handleBet = (e) => {
+        const chances = ((Math.random() * 6) + 1).toFixed(2);
+        if(toString(chances).length > 3){
+            Math.round(chances)
+        };
+        console.log(chances)
+        this.setState({
+            bet: Math.abs(e.currentTarget.value * chances)
+        })
+    }
+    handleSubmit = (e) => {
 
-
+        e.preventDefault();
+        if (this.state.bet < 0) {
+            errors[1] = "Enter non-negative number";
+        } else if (this.state.bet > 50 ){
+            errors[2] = 'Too much at stake'
+        }
+    }
     render() {
+
         return (
-            <div>
+            <div className="main">
                 <label>Team</label>
-                <select onChange={(e)=>{this.handleOption(e)}}>
+                <select onChange={(e) => {this.handleOption(e)}}>
                     <option>Choose a team</option>
                     {this.state.options.map((elem, i) => <option key={i}>{elem.name}</option>)}
-                </select>
-                <h2>Oponents
-                    {this.state.oponents.map((elem,i)=>{
-                        return <p>
-                            {console.log((elem.date))}
-                           <span className={  new Date(elem.date) > Date.now() ? 'TIMED' : 'FINISHED'}>
-                                 {this.state.team === elem.awayTeamName ? elem.homeTeamName : elem.awayTeamName}
-                             </span>
-                        </p>
-                    })}
-                </h2>
+                    </select>
+                <h2>Oponents</h2>
+                {this.state.oponents.map((elem, i) => {
+                    // console.log(new Date(elem.date) > Date.now());
+                    if (new Date(elem.date) > Date.now()){
+                        // console.log(elem.awayTeamName);
+                    return  <p className='currentOponent'>
+                            <span>
+                                {this.state.team === elem.awayTeamName ? elem.homeTeamName : elem.awayTeamName}
+                            </span>
+                            </p>
+
+                    } else {
+                    }
+                })}
+                <h2>The bet: {this.state.bet}</h2>
+                <input type='number' min='0' onChange={this.handleBet}/>
+                <button type='submit' onSubmit={this.handleSubmit}>BET</button>
+                <table>
+
+                </table>
             </div>
         )
     }
 }
 
+class Body extends React.Component{
+    constructor(props){
+        super(props);
+    }
+    render() {
+
+        return (
+            <div className='container'>
+                <Header/>
+                <Main/>
+            </div>
+        )
+    }
+}
 class App extends React.Component {
     constructor(props) {
         super(props);
     }
     render() {
         return (
-            <div>
-                <Header/>
-                <ChooseTeam/>
-                <Bet/>
-            </div>
+            <Body/>
         )
     }
 }
-
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', function() {
     ReactDOM.render(
         <App/>,
         document.getElementById('app')
