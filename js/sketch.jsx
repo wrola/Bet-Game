@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 require("../sass/main.scss");
 
+
 class Header extends React.Component {
     constructor(props) {
         super(props);
@@ -76,13 +77,10 @@ class Main extends React.Component {
         });
     }
     handleBet = (e) => {
-        const chances = ((Math.random() * 6) + 1).toFixed(2);
-        if(toString(chances).length > 3){
-            Math.round(chances)
-        };
-        console.log(chances)
+        const chances = ((Math.random() * 6) + 1).toFixed(2);;
+        const result =(Math.abs(e.currentTarget.value * chances)).toFixed(2)
         this.setState({
-            bet: Math.abs(e.currentTarget.value * chances)
+            bet: result
         })
     }
     handleSubmit = (e) => {
@@ -119,14 +117,64 @@ class Main extends React.Component {
                 })}
                 <h2>The bet: {this.state.bet}</h2>
                 <input type='number' min='0' onChange={this.handleBet}/>
-                <button type='submit' onSubmit={this.handleSubmit}>BET</button>
-                <table>
-
-                </table>
+                <button type='submit' value='submit' onSubmit={this.handleSubmit}>BET</button>
+                <PreviusBets />
             </div>
         )
     }
 }
+class PreviusBets extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            team: this.props.state,
+            bet: this.props.bet,
+        }
+    }
+
+    createBet = () => {
+        noteConfig = options || {
+            id: "sticker_" + new Date().getTime(),
+        };
+
+    }
+
+    saveNote = (note) => {
+        localStorage.setItem(note.id, JSON.stringify(note));
+    };
+    deleteNote = (note) => {
+        localStorage.removeItem(note.id);
+    };
+    loadNotes = () => {
+        for (var i = 0; i < localStorage.length; i++) {
+            var noteObject = JSON.parse(
+                localStorage.getItem(
+                    localStorage.key(i)
+                )
+            );
+            createNote(noteObject);
+        }
+        ;
+    };
+    ComponentDidMount = () => {
+        if (!testLocalStorage) {
+            const message = "We are sorry but you cannot use localStorage";
+            this.saveNote(message);
+        } else {
+            this.saveNote(note);
+            this.loadNotes();
+        }
+    }
+    render() {
+
+        return (
+                <div>
+                <h3>Bets: Win {this.state.team} in game with {this.} </h3>
+                </div>
+        )
+    }
+}
+
 
 class Body extends React.Component{
     constructor(props){
