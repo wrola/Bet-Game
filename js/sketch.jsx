@@ -132,19 +132,7 @@ class PreviusBets extends React.Component {
         }
     }
 
-    createBet = () => {
-        noteConfig = options || {
-            id: "sticker_" + new Date().getTime(),
-        };
 
-    }
-
-    saveNote = (note) => {
-        localStorage.setItem(note.id, JSON.stringify(note));
-    };
-    deleteNote = (note) => {
-        localStorage.removeItem(note.id);
-    };
     loadNotes = () => {
         for (var i = 0; i < localStorage.length; i++) {
             var noteObject = JSON.parse(
@@ -157,13 +145,7 @@ class PreviusBets extends React.Component {
         ;
     };
     ComponentDidMount = () => {
-        if (!testLocalStorage) {
-            const message = "We are sorry but you cannot use localStorage";
-            this.saveNote(message);
-        } else {
-            this.saveNote(note);
-            this.loadNotes();
-        }
+
     }
     render() {
 
