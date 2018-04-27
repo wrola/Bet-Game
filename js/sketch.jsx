@@ -22,11 +22,19 @@ class Main extends React.Component {
         super(props);
         this.state = {
             team: '',
+            currentOponentTeam: '',
             options: [],
             oponents: [],
             tableLeague: [],
             stake: 0,
             bet: 0,
+            validBets: {
+                dateOfValid: '',
+                team:'',
+                OponentOfTeam: ',',
+                stakeOfThisBet: 0,
+
+            }
         }
     }
 
@@ -55,7 +63,6 @@ class Main extends React.Component {
         this.state.options.forEach((elem,i)=>{
                 if(elem.name === event.target.value){
                     this.fetchOpponentsFromAPI(elem._links.fixtures.href);
-
                 }
 
             },this.setState({
@@ -70,8 +77,9 @@ class Main extends React.Component {
             dataType: 'json'
         }).then(r => r.json()).then(data => {
             this.setState({
-                oponents: data.fixtures
+                oponents: data.fixtures,
             })
+            console.log(this.state.oponents)
         }).catch(e => {
             console.log('Błąd!!!!', e)
         });
@@ -86,11 +94,30 @@ class Main extends React.Component {
     handleSubmit = (e) => {
 
         e.preventDefault();
+        let correct= true;
+        let errors = [];
         if (this.state.bet < 0) {
             errors[1] = "Enter non-negative number";
         } else if (this.state.bet > 50 ){
             errors[2] = 'Too much at stake'
         }
+
+        const dateOfGame = this.state.oponents.map((elem, i) => {if (new Date(elem.date) > Date.now()) {
+            new Date(elem.date)
+        } else { 'not valid'
+            };
+            console.log(dateOfGame);
+            if(correct) {
+                this.setState({
+                    validBets:{
+                        dateOfValid: dateOfGame,
+                        team:'',
+                        OponentOfTeam: ',',
+                        stakeOfThisBet: 0,
+                    }
+                })
+            }
+        })
     }
     render() {
 
@@ -116,47 +143,17 @@ class Main extends React.Component {
                     }
                 })}
                 <h2>The bet: {this.state.bet}</h2>
-                <input type='number' min='0' onChange={this.handleBet}/>
-                <button type='submit' value='submit' onSubmit={this.handleSubmit}>BET</button>
-                <PreviusBets />
+                <label>
+                    <input type='number' min='0' onChange={this.handleBet}/>
+                    <button type='submit' value='submit' onSubmit={this.handleSubmit}>BET</button>
+                </label>
+                <h3>
+                    the current bets: On Win {this.state.team} in game with {console.log(this.state.validBets.dateOfValid)}
+                </h3>
             </div>
         )
     }
 }
-class PreviusBets extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            team: this.props.state,
-            bet: this.props.bet,
-        }
-    }
-
-
-    loadNotes = () => {
-        for (var i = 0; i < localStorage.length; i++) {
-            var noteObject = JSON.parse(
-                localStorage.getItem(
-                    localStorage.key(i)
-                )
-            );
-            createNote(noteObject);
-        }
-        ;
-    };
-    ComponentDidMount = () => {
-
-    }
-    render() {
-
-        return (
-                <div>
-                <h3>Bets: Win {this.state.team} in game with {this.} </h3>
-                </div>
-        )
-    }
-}
-
 
 class Body extends React.Component{
     constructor(props){
