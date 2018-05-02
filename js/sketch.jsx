@@ -42,7 +42,7 @@ class Main extends React.Component {
             if(toString(chances).length > 4){
                 Math.round(chances)
             };
-            console.log(chances)
+            // console.log(chances)
             this.setState({
                 options: data.teams,
                 stake: chances
@@ -96,6 +96,7 @@ class Main extends React.Component {
         // create a new item
         const newItem = {
             id: 1 + Math.random(),
+            team: this.state.team,
             value: this.state.newItem.slice()
         };
 
@@ -147,7 +148,7 @@ class Main extends React.Component {
                             </p>
                         }
                     })
-                };
+                }
                     <input type='text' value={this.state.newItem} onChange={e=> this.updateInput('newItem', e.target.value)}/>
                     <button type='button' onClick={()=>this.addItem()}>BET</button>
                 </form>
@@ -157,6 +158,7 @@ class Main extends React.Component {
                             <li key={item.id}>
                                 {item.value}
                                 {item.team}
+
 
                             </li>
                         );
