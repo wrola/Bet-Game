@@ -77,12 +77,12 @@ class Main extends React.Component {
                     if (new Date(elem.date) > Date.now()) {
                         if (this.state.team === elem.awayTeamName) {
                             this.setState({
-                                dateOfTheMatch: new Date(elem.date),
+                                dateOfTheMatch: elem.date,
                                 oponents: elem.homeTeamName,
                             })
                         } else {
                             this.setState({
-                                dateOfTheMatch: new Date(elem.date),
+                                dateOfTheMatch: elem.date,
                                 oponents: elem.awayTeamName,
                             })
                         }
