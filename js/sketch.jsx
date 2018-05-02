@@ -28,13 +28,8 @@ class Main extends React.Component {
             tableLeague: [],
             stake: 0,
             bet: 0,
-            validBets: {
-                dateOfValid: '',
-                team:'',
-                OponentOfTeam: ',',
-                stakeOfThisBet: 0,
-
-            }
+            dateOfValid: '',
+            OponentOfTeam: '',
         }
     }
 
@@ -85,71 +80,52 @@ class Main extends React.Component {
         });
     }
     handleBet = (e) => {
-        const chances = ((Math.random() * 6) + 1).toFixed(2);;
-        const result =(Math.abs(e.currentTarget.value * chances)).toFixed(2)
+        const chances = ((Math.random() * 6) + 1).toFixed(2);
+        const result =(Math.abs(e.currentTarget.value * chances)).toFixed(2);
         this.setState({
             bet: result
         })
     }
     handleSubmit = (e) => {
-
         e.preventDefault();
-        let correct= true;
-        let errors = [];
-        if (this.state.bet < 0) {
-            errors[1] = "Enter non-negative number";
-        } else if (this.state.bet > 50 ){
-            errors[2] = 'Too much at stake'
-        }
 
-        const dateOfGame = this.state.oponents.map((elem, i) => {if (new Date(elem.date) > Date.now()) {
-            new Date(elem.date)
-        } else { 'not valid'
-            };
-            console.log(dateOfGame);
-            if(correct) {
-                this.setState({
-                    validBets:{
-                        dateOfValid: dateOfGame,
-                        team:'',
-                        OponentOfTeam: ',',
-                        stakeOfThisBet: 0,
-                    }
-                })
+        this.setState({
+
             }
-        })
+
+        )
+
+
+
+
     }
+
     render() {
 
         return (
             <div className="main">
-                <label>Team</label>
-                <select onChange={(e) => {this.handleOption(e)}}>
-                    <option>Choose a team</option>
-                    {this.state.options.map((elem, i) => <option key={i}>{elem.name}</option>)}
-                    </select>
+                <form type="submit" >
+                    <label>Team</label>
+                        <select onChange={(e) => {this.handleOption(e)}}>
+                        <option>Choose a team</option>
+                        {this.state.options.map((elem, i) => <option key={i}>{elem.name}</option>)}
+                        </select>
                 <h2>Oponents</h2>
-                {this.state.oponents.map((elem, i) => {
-                    // console.log(new Date(elem.date) > Date.now());
-                    if (new Date(elem.date) > Date.now()){
-                        // console.log(elem.awayTeamName);
-                    return  <p className='currentOponent'>
-                            <span>
-                                {this.state.team === elem.awayTeamName ? elem.homeTeamName : elem.awayTeamName}
-                            </span>
+                    {this.state.oponents.map((elem, i) => {
+                        // console.log(new Date(elem.date) > Date.now());
+                        if (new Date(elem.date) > Date.now()) {
+                            // console.log(elem.awayTeamName);
+                            return <p className='currentOponent'>
+                                <span>
+                                    {this.state.team === elem.awayTeamName ? elem.homeTeamName : elem.awayTeamName}
+                                </span>
                             </p>
-
-                    } else {
-                    }
-                })}
-                <h2>The bet: {this.state.bet}</h2>
-                <label>
-                    <input type='number' min='0' onChange={this.handleBet}/>
-                    <button type='submit' value='submit' onSubmit={this.handleSubmit}>BET</button>
-                </label>
-                <h3>
-                    the current bets: On Win {this.state.team} in game with {console.log(this.state.validBets.dateOfValid)}
-                </h3>
+                        }
+                    })
+                };
+                    <input type='text' onChange={this.handleBet}/>
+                    <button type='button'>BET</button>
+                </form>
             </div>
         )
     }
