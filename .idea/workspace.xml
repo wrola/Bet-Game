@@ -19,8 +19,8 @@
       <file leaf-file-name="sketch.jsx" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/sketch.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="675">
-              <caret line="159" column="43" lean-forward="true" selection-start-line="159" selection-start-column="43" selection-end-line="159" selection-end-column="43" />
+            <state relative-caret-position="308">
+              <caret line="126" column="0" lean-forward="true" selection-start-line="126" selection-start-column="0" selection-end-line="126" selection-end-column="0" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -145,12 +145,12 @@
       <option name="presentableId" value="Default" />
       <updated>1523717140637</updated>
       <workItem from="1523717141882" duration="8000" />
-      <workItem from="1525245951357" duration="12108000" />
+      <workItem from="1525245951357" duration="19546000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="12116000" />
+    <option name="totallyTimeSpent" value="19554000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1505" y="74" width="1301" height="772" extended-state="6" />
@@ -204,8 +204,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/js/sketch.jsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="675">
-          <caret line="159" column="43" lean-forward="true" selection-start-line="159" selection-start-column="43" selection-end-line="159" selection-end-column="43" />
+        <state relative-caret-position="308">
+          <caret line="126" column="0" lean-forward="true" selection-start-line="126" selection-start-column="0" selection-end-line="126" selection-end-column="0" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>

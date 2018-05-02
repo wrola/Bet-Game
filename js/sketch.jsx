@@ -28,6 +28,7 @@ class Main extends React.Component {
             tableLeague: [],
             stake: 0,
             bet: 0,
+            dateOfTheMatch: '',
             newItem: '',
             list: []
         }
@@ -68,16 +69,33 @@ class Main extends React.Component {
 
     fetchOpponentsFromAPI = (url) =>{
         fetch(url,{
-            headers: {'X-Auth-Token': '405e8d17c66e46e284d542c0fb7aacd5'},
-            dataType: 'json'
-        }).then(r => r.json()).then(data => {
-            this.setState({
-                oponents: data.fixtures,
-            })
-            // console.log(this.state.oponents)
-        }).catch(e => {
-            console.log('Błąd!!!!', e)
-        });
+                headers: {'X-Auth-Token': '405e8d17c66e46e284d542c0fb7aacd5'},
+                dataType: 'json'
+            }).then(r => r.json()).then(data => {
+                data.fixtures.map((elem, i) => {
+                    // console.log(new Date(elem.date) > Date.now());
+                    if (new Date(elem.date) > Date.now()) {
+                        if (this.state.team === elem.awayTeamName) {
+                            this.setState({
+                                dateOfTheMatch: new Date(elem.date),
+                                oponents: elem.homeTeamName,
+                            })
+                        } else {
+                            this.setState({
+                                dateOfTheMatch: new Date(elem.date),
+                                oponents: elem.awayTeamName,
+                            })
+                        }
+                    }
+                // this.setState({
+                //     oponents: data.fixtures,
+                // })
+                console.log(this.state.oponents);
+                    console.log(this.state.dateOfTheMatch);
+            }).catch(e => {
+                console.log('Błąd!!!!', e)
+            });
+        })
     }
     handleBet = (e) => {
         const chances = ((Math.random() * 6) + 1).toFixed(2);
@@ -87,8 +105,10 @@ class Main extends React.Component {
         })
     }
     updateInput = (key, value) => {
+        const chances = ((Math.random() * 6) + 1).toFixed(2);
+        const result =(Math.abs(value * chances)).toFixed(2);
         this.setState({
-            [key]: value
+            [key]: result
         });
         localStorage.setItem(key, value)
     }
@@ -97,7 +117,9 @@ class Main extends React.Component {
         const newItem = {
             id: 1 + Math.random(),
             team: this.state.team,
-            value: this.state.newItem.slice()
+            oponent: this.state.oponents,
+            date: this.state.dateOfTheMatch,
+            value: this.state.newItem.slice(),
         };
 
         // copy current list of items
@@ -118,46 +140,40 @@ class Main extends React.Component {
         this.setState({
 
             }
-
         )
-
-
-
-
     }
 
     render() {
-
         return (
             <div className="main">
                 <form type="submit" >
                     <label>Team</label>
-                        <select onChange={(e) => {this.handleOption(e)}}>
+                        <select onChange={(e) => {this.handleOption(e)}} onSelect={(e) => {this.checkTheCurrentOponent(e)}}>
                         <option>Choose a team</option>
                         {this.state.options.map((elem, i) => <option key={i}>{elem.name}</option>)}
                         </select>
                 <h2>Oponents</h2>
-                    {this.state.oponents.map((elem, i) => {
-                        // console.log(new Date(elem.date) > Date.now());
-                        if (new Date(elem.date) > Date.now()) {
-                            // console.log(elem.awayTeamName);
-                            return <p className='currentOponent'>
-                                <span>
-                                    {this.state.team === elem.awayTeamName ? elem.homeTeamName : elem.awayTeamName}
-                                </span>
-                            </p>
-                        }
-                    })
-                }
-                    <input type='text' value={this.state.newItem} onChange={e=> this.updateInput('newItem', e.target.value)}/>
+                    {/*{this.state.oponents.map((elem, i) => {*/}
+                        {/*// console.log(new Date(elem.date) > Date.now());*/}
+                        {/*if (new Date(elem.date) > Date.now()) {*/}
+                            {/*// console.log(elem.awayTeamName);*/}
+                            {/*return <p className='currentOponent'>*/}
+                                {/*<span>*/}
+                                    {/*{this.state.team === elem.awayTeamName ? elem.homeTeamName : elem.awayTeamName}*/}
+                                {/*</span>*/}
+                            {/*</p>*/}
+                        {/*}*/}
+                    {/*})*/}
+                    {/*}*/}
+                    <input type='text'  onChange={e=> this.updateInput('newItem', e.target.value)}/>
                     <button type='button' onClick={()=>this.addItem()}>BET</button>
                 </form>
                 <ul>
                     {this.state.list.map(item => {
                         return (
                             <li key={item.id}>
-                                {item.value}
-                                {item.team}
+
+                                 I bet {item.value} for win {item.team} in game with {item.oponent} on {item.date}
 
 
                             </li>
