@@ -25,7 +25,6 @@ class Main extends React.Component {
             currentOponentTeam: '',
             options: [],
             oponents: [],
-            tableLeague: [],
             stake: 0,
             bet: 0,
             dateOfTheMatch: '',
@@ -51,7 +50,7 @@ class Main extends React.Component {
         }).catch(e => {
             console.log('Błąd!!!!', e)
         });
-
+        this.updateStateWithLocalStorage()
     }
 
     handleOption = (event) =>{
@@ -87,9 +86,7 @@ class Main extends React.Component {
                             })
                         }
                     }
-                // this.setState({
-                //     oponents: data.fixtures,
-                // })
+
                 console.log(this.state.oponents);
                     console.log(this.state.dateOfTheMatch);
             }).catch(e => {
@@ -133,6 +130,10 @@ class Main extends React.Component {
             list,
             newItem: ""
         });
+
+        //upadate localStorage
+        localStorage.setItem('list', JSON.stringify(list));
+        localStorage.setItem('newItem', '');
     }
     handleSubmit = (e) => {
         e.preventDefault();
@@ -142,7 +143,24 @@ class Main extends React.Component {
             }
         )
     }
+    updateStateWithLocalStorage = () =>{
+        for(let key in this.state){
+            if(localStorage.hasOwnProperty(key)){
+                let value = localStorage.getItem(key);
 
+                try {
+                    value = JSON.parse(value);
+                    this.setState({
+                        [key] : value
+                    })
+                } catch (e) {
+                    this.setState({
+                        [key] : value
+                    })
+                }
+            }
+        }
+    }
     render() {
         return (
             <div className="main">
