@@ -183,7 +183,7 @@ class Main extends React.Component {
                 }} onSelect={(e) => {
                     this.checkTheCurrentOponent(e)
                 }}>
-                        <option>Choose a team</option>
+                        <p>Choose a team</p>
                         <div className="main-form-slider">
                         {this.state.options.map((elem, i) => {
                             return (<div className='main-form-slide'>
