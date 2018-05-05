@@ -5932,7 +5932,7 @@ Lockfile:
 
 Trace: 
   Error: Command failed.
-  Exit signal: SIGHUP
+  Exit code: 1
   Command: sh
   Arguments: -c ./node_modules/.bin/webpack-dev-server --inline --hot
   Directory: /home/wojciech/Dokumenty/Kurs/BetGame

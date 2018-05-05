@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-require("../sass/main.scss");
+import("../sass/main.scss");
 
 
 class Header extends React.Component {
@@ -175,41 +175,24 @@ class Main extends React.Component {
                 <p>
                     Choose a team
                 </p>
+                <div className="main-form-slider">
+
                 <button type="button" className="main-form-prev">
                     &lt;
                 </button>
-                <span className='main-form-options' onChange={(e) => {
-                    this.handleOption(e)
-                }} onSelect={(e) => {
-                    this.checkTheCurrentOponent(e)
-                }}>
-                        <p>Choose a team</p>
-                        <div className="main-form-slider">
                         {this.state.options.map((elem, i) => {
                             return (<div className='main-form-slide'>
-                                <img className='main-form-img' key={i} src={elem.crestUrl}/>
-                                <span>{elem.name} </span>
-                            </div>)
+                                    <img className='main-form-slide-img' style={{height:'50', width: '50'}} key={i} src={elem.crestUrl}/>
+                                    <span className='main-form-slide-title'>{elem.name} </span>
+                                    </div>)
                         })}
-                            {/*{this.state.options.map((elem, i) => <span key={i}>{elem.name}</span>)}*/}
-                        </div>
-                        </span>
+
                 <button type="button" className="main-form-next">
                     &gt;
                 </button>
+                </div>
                 <h2>Oponents</h2>
-                {/*{this.state.oponents.map((elem, i) => {*/}
-                {/*// console.log(new Date(elem.date) > Date.now());*/}
-                {/*if (new Date(elem.date) > Date.now()) {*/}
-                {/*// console.log(elem.awayTeamName);*/}
-                {/*return <p className='currentOponent'>*/}
-                {/*<span>*/}
-                {/*{this.state.team === elem.awayTeamName ? elem.homeTeamName : elem.awayTeamName}*/}
-                {/*</span>*/}
-                {/*</p>*/}
-                {/*}*/}
-                {/*})*/}
-                {/*}*/}
+
                 <input className='main-form-input' type='text'
                        onChange={e => this.updateInput('newItem', e.target.value)}/>
                 <button className='main-form-btn btn' type='button' onClick={() => this.addItem()}>BET</button>
