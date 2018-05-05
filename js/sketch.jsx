@@ -12,7 +12,7 @@ class Header extends React.Component {
             <div className='header'>
                 <h1>The Bet Game</h1>
 
-                <p>Score</p>
+                <p>Score{this.props.score}</p>
             </div>
         )
     }
@@ -42,11 +42,11 @@ class Main extends React.Component {
             if(toString(chances).length > 4){
                 Math.round(chances)
             };
-            // console.log(chances)
             this.setState({
                 options: data.teams,
-                stake: chances
+                stake: chances,
             })
+
         }).catch(e => {
             console.log('Błąd!!!!', e)
         });
@@ -54,12 +54,11 @@ class Main extends React.Component {
     }
 
     handleOption = (event) =>{
-        // console.log(event.target.value);
         this.state.options.forEach((elem,i)=>{
                 if(elem.name === event.target.value){
                     this.fetchOpponentsFromAPI(elem._links.fixtures.href);
                 }
-
+                // console.log(elem.crestUrl)
             },this.setState({
                 team : event.target.value,
             })
@@ -72,7 +71,6 @@ class Main extends React.Component {
                 dataType: 'json'
             }).then(r => r.json()).then(data => {
                 data.fixtures.map((elem, i) => {
-                    // console.log(new Date(elem.date) > Date.now());
                     if (new Date(elem.date) > Date.now()) {
                         if (this.state.team === elem.awayTeamName) {
                             this.setState({
@@ -87,8 +85,8 @@ class Main extends React.Component {
                         }
                     }
 
-                console.log(this.state.oponents);
-                    console.log(this.state.dateOfTheMatch);
+                // console.log(this.state.oponents);
+                //     console.log(this.state.dateOfTheMatch);
             }).catch(e => {
                 console.log('Błąd!!!!', e)
             });
@@ -143,11 +141,25 @@ class Main extends React.Component {
             }
         )
     }
+    deleteItem(id) {
+        // copy current list of items
+        const list = [...this.state.list];
+        // filter out the item being deleted
+        const updatedList = list.filter(item => item.id !== id);
+
+        this.setState({
+            list: updatedList
+        });
+
+        // update localStorage
+        localStorage.setItem("list", JSON.stringify(
+            updatedList
+        ));
+    }
     updateStateWithLocalStorage = () =>{
         for(let key in this.state){
             if(localStorage.hasOwnProperty(key)){
                 let value = localStorage.getItem(key);
-
                 try {
                     value = JSON.parse(value);
                     this.setState({
@@ -164,12 +176,13 @@ class Main extends React.Component {
     render() {
         return (
             <div className="main">
-                <form type="submit" >
+                <form type="submit" className='main-form'>
                     <label>Team</label>
-                        <select onChange={(e) => {this.handleOption(e)}} onSelect={(e) => {this.checkTheCurrentOponent(e)}}>
+                        <select className='main-form-options' onChange={(e) => {this.handleOption(e)}} onSelect={(e) => {this.checkTheCurrentOponent(e)}}>
                         <option>Choose a team</option>
                         {this.state.options.map((elem, i) => <option key={i}>{elem.name}</option>)}
                         </select>
+                            {this.state.options.map((elem,i)=> <img className='main-form-img' key={i} src={elem.crestUrl}/>)}
                 <h2>Oponents</h2>
                     {/*{this.state.oponents.map((elem, i) => {*/}
                         {/*// console.log(new Date(elem.date) > Date.now());*/}
@@ -183,16 +196,18 @@ class Main extends React.Component {
                         {/*}*/}
                     {/*})*/}
                     {/*}*/}
-                    <input type='text'  onChange={e=> this.updateInput('newItem', e.target.value)}/>
-                    <button type='button' onClick={()=>this.addItem()}>BET</button>
+                    <input className='main-form-input' type='text'  onChange={e=> this.updateInput('newItem', e.target.value)}/>
+                    <button className='main-form-btn btn' type='button' onClick={()=>this.addItem()}>BET</button>
                 </form>
-                <ul>
+                <ul className="main-banner">
                     {this.state.list.map(item => {
                         return (
-                            <li key={item.id}>
+                            <li className='main-banner-el' key={item.id}>
 
                                  I bet {item.value} for win {item.team} in game with {item.oponent} on {item.date}
-
+                                <button className='main-banner-btn btn' onClick={() => this.deleteItem(item.id)}>
+                                    Remove
+                                </button>
 
                             </li>
                         );
@@ -203,27 +218,16 @@ class Main extends React.Component {
     }
 }
 
-class Body extends React.Component{
-    constructor(props){
-        super(props);
-    }
-    render() {
-
-        return (
-            <div className='container'>
-                <Header/>
-                <Main/>
-            </div>
-        )
-    }
-}
 class App extends React.Component {
     constructor(props) {
         super(props);
     }
     render() {
         return (
-            <Body/>
+            <div className='container'>
+                <Header/>
+                <Main/>
+            </div>
         )
     }
 }
