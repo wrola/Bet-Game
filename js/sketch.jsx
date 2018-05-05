@@ -58,7 +58,6 @@ class Main extends React.Component {
                 if(elem.name === event.target.value){
                     this.fetchOpponentsFromAPI(elem._links.fixtures.href);
                 }
-                // console.log(elem.crestUrl)
             },this.setState({
                 team : event.target.value,
             })
@@ -84,9 +83,6 @@ class Main extends React.Component {
                             })
                         }
                     }
-
-                // console.log(this.state.oponents);
-                //     console.log(this.state.dateOfTheMatch);
             }).catch(e => {
                 console.log('Błąd!!!!', e)
             });
@@ -174,52 +170,65 @@ class Main extends React.Component {
         }
     }
     render() {
-        return (
-            <div className="main">
-                <form type="submit" className='main-form'>
-                    <button type="button" className="main-slider-prev">
-                        &lt;
-                    </button>
-                    <button type="button" className="main-slider-next">
-                        &gt;
-                    </button>
-                        <span className='main-form-options' onChange={(e) => {this.handleOption(e)}} onSelect={(e) => {this.checkTheCurrentOponent(e)}}>
+        return <div className="main">
+            <form type="submit" className='main-form'>
+                <p>
+                    Choose a team
+                </p>
+                <button type="button" className="main-form-prev">
+                    &lt;
+                </button>
+                <span className='main-form-options' onChange={(e) => {
+                    this.handleOption(e)
+                }} onSelect={(e) => {
+                    this.checkTheCurrentOponent(e)
+                }}>
                         <option>Choose a team</option>
-                        {this.state.options.map((elem, i)=> <img className='main-form-img' key={i} src={elem.crestUrl}/>)}
-                        {this.state.options.map((elem, i) => <option key={i}>{elem.name}</option>)}
+                        <div className="main-form-slider">
+                        {this.state.options.map((elem, i) => {
+                            return (<div className='main-form-slide'>
+                                <img className='main-form-img' key={i} src={elem.crestUrl}/>
+                                <span>{elem.name} </span>
+                            </div>)
+                        })}
+                            {/*{this.state.options.map((elem, i) => <span key={i}>{elem.name}</span>)}*/}
+                        </div>
                         </span>
+                <button type="button" className="main-form-next">
+                    &gt;
+                </button>
                 <h2>Oponents</h2>
-                    {/*{this.state.oponents.map((elem, i) => {*/}
-                        {/*// console.log(new Date(elem.date) > Date.now());*/}
-                        {/*if (new Date(elem.date) > Date.now()) {*/}
-                            {/*// console.log(elem.awayTeamName);*/}
-                            {/*return <p className='currentOponent'>*/}
-                                {/*<span>*/}
-                                    {/*{this.state.team === elem.awayTeamName ? elem.homeTeamName : elem.awayTeamName}*/}
-                                {/*</span>*/}
-                            {/*</p>*/}
-                        {/*}*/}
-                    {/*})*/}
-                    {/*}*/}
-                    <input className='main-form-input' type='text'  onChange={e=> this.updateInput('newItem', e.target.value)}/>
-                    <button className='main-form-btn btn' type='button' onClick={()=>this.addItem()}>BET</button>
-                </form>
-                <ul className="main-banner">
-                    {this.state.list.map(item => {
-                        return (
-                            <li className='main-banner-el' key={item.id}>
+                {/*{this.state.oponents.map((elem, i) => {*/}
+                {/*// console.log(new Date(elem.date) > Date.now());*/}
+                {/*if (new Date(elem.date) > Date.now()) {*/}
+                {/*// console.log(elem.awayTeamName);*/}
+                {/*return <p className='currentOponent'>*/}
+                {/*<span>*/}
+                {/*{this.state.team === elem.awayTeamName ? elem.homeTeamName : elem.awayTeamName}*/}
+                {/*</span>*/}
+                {/*</p>*/}
+                {/*}*/}
+                {/*})*/}
+                {/*}*/}
+                <input className='main-form-input' type='text'
+                       onChange={e => this.updateInput('newItem', e.target.value)}/>
+                <button className='main-form-btn btn' type='button' onClick={() => this.addItem()}>BET</button>
+            </form>
+            <ul className="main-banner">
+                {this.state.list.map(item => {
+                    return (
+                        <li className='main-banner-el' key={item.id}>
 
-                                 I bet {item.value} for win {item.team} in game with {item.oponent} on {item.date}
-                                <button className='main-banner-btn btn' onClick={() => this.deleteItem(item.id)}>
-                                    Remove
-                                </button>
+                            I bet {item.value} for win {item.team} in game with {item.oponent} on {item.date}
+                            <button className='main-banner-btn btn' onClick={() => this.deleteItem(item.id)}>
+                                Remove
+                            </button>
 
-                            </li>
-                        );
-                    })}
-                </ul>
-            </div>
-        )
+                        </li>
+                    );
+                })}
+            </ul>
+        </div>
     }
 }
 
