@@ -177,12 +177,17 @@ class Main extends React.Component {
         return (
             <div className="main">
                 <form type="submit" className='main-form'>
-                    <label>Team</label>
-                        <select className='main-form-options' onChange={(e) => {this.handleOption(e)}} onSelect={(e) => {this.checkTheCurrentOponent(e)}}>
+                    <button type="button" className="main-slider-prev">
+                        &lt;
+                    </button>
+                    <button type="button" className="main-slider-next">
+                        &gt;
+                    </button>
+                        <span className='main-form-options' onChange={(e) => {this.handleOption(e)}} onSelect={(e) => {this.checkTheCurrentOponent(e)}}>
                         <option>Choose a team</option>
+                        {this.state.options.map((elem, i)=> <img className='main-form-img' key={i} src={elem.crestUrl}/>)}
                         {this.state.options.map((elem, i) => <option key={i}>{elem.name}</option>)}
-                        </select>
-                            {this.state.options.map((elem,i)=> <img className='main-form-img' key={i} src={elem.crestUrl}/>)}
+                        </span>
                 <h2>Oponents</h2>
                     {/*{this.state.oponents.map((elem, i) => {*/}
                         {/*// console.log(new Date(elem.date) > Date.now());*/}
