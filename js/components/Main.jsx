@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import Slider from "./Slider";
+import Slider from './Slider.jsx';
 
 class Main extends React.Component {
     constructor(props) {
@@ -159,19 +159,19 @@ class Main extends React.Component {
                 <p>
                     Choose a team
                 </p>
-                <div className="main-form-slider">
+                <div className="main-form-slider" style={{display: 'flex', justifyContent: 'space-around'}}>
 
-                    <button type="button" className="main-form-prev">
+                    <button type="button" className="main-form-prev" style={{background: 'transparent', border:'0', color: '#00134d',background: 'transparent',transition: '0.5s color',cursor:'pointer'}}>
                         &lt;
                     </button>
                     {this.state.options.map((elem, i) => {
-                        return (<div className='main-form-slide'>
+                        return (<div className='main-form-slide' >
                             <img className='main-form-slide-img' style={{height:'50', width: '50'}} key={i} src={elem.crestUrl}/>
                             <span className='main-form-slide-title'>{elem.name} </span>
                         </div>)
                     })}
 
-                    <button type="button" className="main-form-next">
+                    <button type="button" className="main-form-next" style={{background: 'transparent', border:'0', color: '#00134d',background: 'transparent',transition: '0.5s color',cursor:'pointer'}}>
                         &gt;
                     </button>
                 </div>
