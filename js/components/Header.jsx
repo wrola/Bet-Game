@@ -1,4 +1,4 @@
-import React from "react";
+import React, {Component} from "react";
 
 class Header extends React.Component {
     constructor(props) {
@@ -14,3 +14,4 @@ class Header extends React.Component {
         )
     }
 }
+export default Header;

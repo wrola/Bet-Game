@@ -1,4 +1,5 @@
-import React from "react";
+import React, {Component} from "react";
+import Slider from "./Slider";
 
 class Main extends React.Component {
     constructor(props) {
@@ -197,3 +198,4 @@ class Main extends React.Component {
         </div>
     }
 }
+export default Main;
