@@ -6,11 +6,7 @@ class Main extends React.Component {
         super(props);
         this.state = {
             team: '',
-            currentOponentTeam: '',
             options: [],
-            oponents: [],
-            stake: 0,
-            bet: 0,
             dateOfTheMatch: '',
             newItem: '',
             list: []
@@ -28,7 +24,6 @@ class Main extends React.Component {
             };
             this.setState({
                 options: data.teams,
-                stake: chances,
             })
 
         }).catch(e => {
@@ -37,48 +32,6 @@ class Main extends React.Component {
         this.updateStateWithLocalStorage()
     }
 
-    handleOption = (event) =>{
-        this.state.options.forEach((elem,i)=>{
-                if(elem.name === event.target.value){
-                    this.fetchOpponentsFromAPI(elem._links.fixtures.href);
-                }
-            },this.setState({
-                team : event.target.value,
-            })
-        )
-    }
-
-    fetchOpponentsFromAPI = (url) =>{
-        fetch(url,{
-            headers: {'X-Auth-Token': '405e8d17c66e46e284d542c0fb7aacd5'},
-            dataType: 'json'
-        }).then(r => r.json()).then(data => {
-            data.fixtures.map((elem, i) => {
-                if (new Date(elem.date) > Date.now()) {
-                    if (this.state.team === elem.awayTeamName) {
-                        this.setState({
-                            dateOfTheMatch: elem.date,
-                            oponents: elem.homeTeamName,
-                        })
-                    } else {
-                        this.setState({
-                            dateOfTheMatch: elem.date,
-                            oponents: elem.awayTeamName,
-                        })
-                    }
-                }
-            }).catch(e => {
-                console.log('Błąd!!!!', e)
-            });
-        })
-    }
-    handleBet = (e) => {
-        const chances = ((Math.random() * 6) + 1).toFixed(2);
-        const result =(Math.abs(e.currentTarget.value * chances)).toFixed(2);
-        this.setState({
-            bet: result
-        })
-    }
     updateInput = (key, value) => {
         const chances = ((Math.random() * 6) + 1).toFixed(2);
         const result =(Math.abs(value * chances)).toFixed(2);
@@ -145,11 +98,7 @@ class Main extends React.Component {
             }
         }
     }
-    onTeamSelected = (team) => {
-        this.setState({
-            team
-        })
-    }
+
     render() {
         return <div className="main">
             <form type="submit" className='main-form'>
@@ -157,7 +106,7 @@ class Main extends React.Component {
                     Choose a team
                 </p>
                 {console.log(this.state.name)}
-               <Slider options={this.state.options}/>
+               <Slider options={this.state.options} />
                 <h2>Oponents</h2>
 
                 <input className='main-form-input' type='text'

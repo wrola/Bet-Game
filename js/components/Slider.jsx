@@ -15,7 +15,7 @@ class Slider extends React.Component{
                     this.fetchOpponentsFromAPI(elem._links.fixtures.href);
                 }
             },this.setState({
-                team : event.target.value,
+                team : event.target.value
             })
         )
     }
@@ -45,10 +45,10 @@ class Slider extends React.Component{
     }
 
     render() {
-        console.log(this.props.options);
+        // console.log(this.props.options);
         return (
             <div className="main-form-slider" style={{display: 'flex', justifyContent: 'space-around'}}>
-                <button type="button" className="main-form-prev" style={{background: 'transparent', border:'0', color: '#00134d',background: 'transparent',transition: '0.5s color',cursor:'pointer'}} onChange={this.handleOption}>
+                <button type="button" className="main-form-prev" style={{background: 'transparent', border:'0', color: '#00134d',background: 'transparent',transition: '0.5s color',cursor:'pointer'}}>
                     &lt;
                 </button>
                 {this.props.options.map((elem, i) => {
