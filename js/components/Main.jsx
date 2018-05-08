@@ -31,6 +31,40 @@ class Main extends React.Component {
         });
         this.updateStateWithLocalStorage()
     }
+    handleOption = (event) =>{
+        this.state.options.forEach((elem,i)=>{
+                if(elem.name === event.target.value ){
+                    this.fetchOpponentsFromAPI(elem._links.fixtures.href);
+                }
+            },this.setState({
+                team : event.target.value
+            })
+        )
+    }
+    fetchOpponentsFromAPI = (url) =>{
+        fetch(url,{
+            headers: {'X-Auth-Token': '405e8d17c66e46e284d542c0fb7aacd5'},
+            dataType: 'json'
+        }).then(r => r.json()).then(data => {
+            data.fixtures.map((elem, i) => {
+                if (new Date(elem.date) > Date.now()) {
+                    if (this.state.team === elem.awayTeamName) {
+                        this.setState({
+                            dateOfTheMatch: elem.date,
+                            oponents: elem.homeTeamName,
+                        })
+                    } else {
+                        this.setState({
+                            dateOfTheMatch: elem.date,
+                            oponents: elem.awayTeamName,
+                        })
+                    }
+                }
+            }).catch(e => {
+                console.log('Błąd!!!!', e)
+            });
+        })
+    }
 
     updateInput = (key, value) => {
         const chances = ((Math.random() * 6) + 1).toFixed(2);
@@ -105,7 +139,6 @@ class Main extends React.Component {
                 <p>
                     Choose a team
                 </p>
-                {console.log(this.state.name)}
                <Slider options={this.state.options} />
                 <h2>Oponents</h2>
 

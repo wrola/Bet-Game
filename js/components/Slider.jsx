@@ -9,40 +9,6 @@ class Slider extends React.Component{
             oponents: '',
         }
     }
-    handleOption = (event) =>{
-        this.props.options.forEach((elem,i)=>{
-                if(elem.name === event.target.value ){
-                    this.fetchOpponentsFromAPI(elem._links.fixtures.href);
-                }
-            },this.setState({
-                team : event.target.value
-            })
-        )
-    }
-    fetchOpponentsFromAPI = (url) =>{
-        fetch(url,{
-            headers: {'X-Auth-Token': '405e8d17c66e46e284d542c0fb7aacd5'},
-            dataType: 'json'
-        }).then(r => r.json()).then(data => {
-            data.fixtures.map((elem, i) => {
-                if (new Date(elem.date) > Date.now()) {
-                    if (this.state.team === elem.awayTeamName) {
-                        this.setState({
-                            dateOfTheMatch: elem.date,
-                            oponents: elem.homeTeamName,
-                        })
-                    } else {
-                        this.setState({
-                            dateOfTheMatch: elem.date,
-                            oponents: elem.awayTeamName,
-                        })
-                    }
-                }
-            }).catch(e => {
-                console.log('Błąd!!!!', e)
-            });
-        })
-    }
 
     render() {
         // console.log(this.props.options);
