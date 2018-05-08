@@ -145,12 +145,18 @@ class Main extends React.Component {
             }
         }
     }
+    onTeamSelected = (team) => {
+        this.setState({
+            team
+        })
+    }
     render() {
         return <div className="main">
             <form type="submit" className='main-form'>
                 <p>
                     Choose a team
                 </p>
+                {console.log(this.state.name)}
                <Slider options={this.state.options}/>
                 <h2>Oponents</h2>
 
