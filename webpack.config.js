@@ -1,4 +1,3 @@
-//Konfiguracja Webpack
 var path = require('path');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 var HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -8,7 +7,7 @@ const webpack = require("webpack");
 module.exports = {
     devtool: 'cheap-eval-source-map',
     entry: {
-        main: path.join(__dirname, 'js', 'app.jsx')
+        main: path.join(__dirname, 'src', 'app.jsx')
     },
     output: {
         path: path.join(__dirname, 'dist'),
