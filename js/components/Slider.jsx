@@ -40,7 +40,7 @@ class Slider extends React.Component{
 
         return (
             <div className="main-form-slider" style={this.slideOrder}>
-                <button type="button" onClick={this.prevSlide} className="main-form-prev" style={this.btnStylePrev}>
+                <button type="button" onClick={this.prevSlide} className="main-form-prev" style={this.btnStylePrev} style={{background: 'transparent', border:'0', color: '#00134d',background: 'transparent',transition: '0.5s color',cursor:'pointer'}}>
                     &lt;
                 </button>
                     <label>Team</label>
