@@ -1,0 +1,26 @@
+
+.main-form-slider {
+    display: flex;
+    justify-content: space-around;
+
+    .main-form-prev,
+    .main-form-next {
+
+    }
+    .main-form-slide {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      .main-form-slide-img {
+        width: 20px;
+        height: 20px;
+      }
+      .main-form-slide-title {
+        font-size: 1.5rem;
+      }
+    }
+  }
+
+
+

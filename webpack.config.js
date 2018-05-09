@@ -8,7 +8,7 @@ const webpack = require("webpack");
 module.exports = {
     devtool: 'cheap-eval-source-map',
     entry: {
-        main: path.join(__dirname, 'js', 'sketch.jsx')
+        main: path.join(__dirname, 'js', 'app.jsx')
     },
     output: {
         path: path.join(__dirname, 'dist'),
