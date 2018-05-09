@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1ac60288-bfd8-4866-ba30-5094e501e912" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/js/components/Main.jsx" afterPath="$PROJECT_DIR$/js/components/Main.jsx" />
-      <change beforePath="$PROJECT_DIR$/js/components/Slider.jsx" afterPath="$PROJECT_DIR$/js/components/Slider.jsx" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -58,21 +56,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Slider.jsx" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Slider.jsx" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/components/Slider.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="54">
-              <caret line="20" column="57" lean-forward="false" selection-start-line="20" selection-start-column="57" selection-end-line="20" selection-end-column="57" />
+            <state relative-caret-position="216">
+              <caret line="26" column="41" lean-forward="false" selection-start-line="26" selection-start-column="41" selection-end-line="26" selection-end-column="41" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Main.jsx" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Main.jsx" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/components/Main.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="214">
-              <caret line="144" column="46" lean-forward="true" selection-start-line="144" selection-start-column="46" selection-end-line="144" selection-end-column="46" />
+            <state relative-caret-position="295">
+              <caret line="42" column="9" lean-forward="true" selection-start-line="42" selection-start-column="9" selection-end-line="42" selection-end-column="9" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
               </folding>
@@ -128,8 +126,8 @@
         <option value="$PROJECT_DIR$/js/components/Header.jsx" />
         <option value="$PROJECT_DIR$/js/components/slider.jsx" />
         <option value="$PROJECT_DIR$/sass/_banner.scss" />
-        <option value="$PROJECT_DIR$/js/components/Main.jsx" />
         <option value="$PROJECT_DIR$/js/components/Slider.jsx" />
+        <option value="$PROJECT_DIR$/js/components/Main.jsx" />
       </list>
     </option>
   </component>
@@ -247,12 +245,12 @@
       <workItem from="1525547095879" duration="2542000" />
       <workItem from="1525555783060" duration="1870000" />
       <workItem from="1525691375826" duration="11061000" />
-      <workItem from="1525775396425" duration="16321000" />
+      <workItem from="1525775396425" duration="16480000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="81987000" />
+    <option name="totallyTimeSpent" value="82146000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1505" y="74" width="1301" height="772" extended-state="6" />
@@ -531,21 +529,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/components/Main.jsx">
+    <entry file="file://$PROJECT_DIR$/js/components/Slider.jsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="214">
-          <caret line="144" column="46" lean-forward="true" selection-start-line="144" selection-start-column="46" selection-end-line="144" selection-end-column="46" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="216">
+          <caret line="26" column="41" lean-forward="false" selection-start-line="26" selection-start-column="41" selection-end-line="26" selection-end-column="41" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/components/Slider.jsx">
+    <entry file="file://$PROJECT_DIR$/js/components/Main.jsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="54">
-          <caret line="20" column="57" lean-forward="false" selection-start-line="20" selection-start-column="57" selection-end-line="20" selection-end-column="57" />
-          <folding />
+        <state relative-caret-position="295">
+          <caret line="42" column="9" lean-forward="true" selection-start-line="42" selection-start-column="9" selection-end-line="42" selection-end-column="9" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

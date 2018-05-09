@@ -32,15 +32,15 @@ class Main extends React.Component {
         this.updateStateWithLocalStorage()
     }
     handleOption = (event) =>{
-        // this.state.options.forEach((elem,i)=>{
-        //         if(elem.name === event.target.value ){
-        //             this.fetchOpponentsFromAPI(elem._links.fixtures.href);
-        //         }
-        //     },
+        this.state.options.forEach((elem,i)=>{
+                if(elem.name === event.target.value ){
+                    this.fetchOpponentsFromAPI(elem._links.fixtures.href);
+                }
+            },
             this.setState({
                 team : event.target.value
             })
-        // )
+        )
     }
     fetchOpponentsFromAPI = (url) =>{
         fetch(url,{
