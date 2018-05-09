@@ -43,7 +43,7 @@ class Slider extends React.Component{
                 <button type="button" onClick={this.prevSlide} className="main-form-prev" style={this.btnStylePrev}>
                     &lt;
                 </button>
-                    <label>label>Team</labellabel>
+                    <label>Team</label>
                         <select onChange={this.props.selectedTeam}>
                         <option>Choose a team</option>
                         {this.props.options.map((elem, i) => <option key={i} className='main-form-option' >{elem.name}</option>)}
