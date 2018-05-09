@@ -32,14 +32,15 @@ class Main extends React.Component {
         this.updateStateWithLocalStorage()
     }
     handleOption = (event) =>{
-        this.state.options.forEach((elem,i)=>{
-                if(elem.name === event.target.value ){
-                    this.fetchOpponentsFromAPI(elem._links.fixtures.href);
-                }
-            },this.setState({
+        // this.state.options.forEach((elem,i)=>{
+        //         if(elem.name === event.target.value ){
+        //             this.fetchOpponentsFromAPI(elem._links.fixtures.href);
+        //         }
+        //     },
+            this.setState({
                 team : event.target.value
             })
-        )
+        // )
     }
     fetchOpponentsFromAPI = (url) =>{
         fetch(url,{
@@ -51,12 +52,12 @@ class Main extends React.Component {
                     if (this.state.team === elem.awayTeamName) {
                         this.setState({
                             dateOfTheMatch: elem.date,
-                            oponents: elem.homeTeamName,
+                            oponent: elem.homeTeamName,
                         })
                     } else {
                         this.setState({
                             dateOfTheMatch: elem.date,
-                            oponents: elem.awayTeamName,
+                            oponent: elem.awayTeamName,
                         })
                     }
                 }
@@ -79,7 +80,7 @@ class Main extends React.Component {
         const newItem = {
             id: 1 + Math.random(),
             team: this.state.team,
-            oponent: this.state.oponents,
+            oponent: this.state.oponent,
             date: this.state.dateOfTheMatch,
             value: this.state.newItem.slice(),
         };
@@ -139,9 +140,8 @@ class Main extends React.Component {
                 <p>
                     Choose a team
                 </p>
-               <Slider options={this.state.options} />
+               <Slider options={this.state.options} selectedTeam={this.handleOption}/>
                 <h2>Oponents</h2>
-
                 <input className='main-form-input' type='text'
                        onChange={e => this.updateInput('newItem', e.target.value)}/>
                 <button className='main-form-btn btn' type='button' onClick={() => this.addItem()}>BET</button>
