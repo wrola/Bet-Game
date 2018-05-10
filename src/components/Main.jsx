@@ -14,7 +14,7 @@ class Main extends React.Component {
     }
 
     componentDidMount = () => {
-        fetch('http://api.football-data.org/v1/competitions/398/teams', {
+        fetch('https://api.football-data.org/v1/competitions/398/teams', {
             headers: {'X-Auth-Token': '405e8d17c66e46e284d542c0fb7aacd5'},
             dataType: 'json'
         }).then(r => r.json()).then(data => {
