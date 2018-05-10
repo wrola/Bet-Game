@@ -52,6 +52,8 @@ module.exports = {
             template: path.join(__dirname, 'index.html'),
             hash: true
         }),
-        new ExtractTextPlugin('style.css')
+        new ExtractTextPlugin({
+            filename: 'app.bundle.css'
+        })
     ]
 }
