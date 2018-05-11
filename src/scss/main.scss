@@ -4,7 +4,8 @@
 @import '_slider.scss';
 
 :root {
-  --color: #00134d
+  --color1: #00134d;
+  --color2: #b2c5fa;
 }
 
 * {
@@ -31,17 +32,17 @@
     height: 90%;
   }
   .btn {
-    color: var(--color);
+    color: var(--color1);
     background-color: Transparent;
     background-repeat:no-repeat;
-    border: 1px solid var(--color);
+    border: 1px solid var(--color1);
     cursor:pointer;
     overflow: hidden;
     padding: 10px 15px;
   }
   .btn:hover{
-    background-color: var(--color);
-    color: #dae3ff;
+    background-color: var(--color1);
+    color: var(--color2);
   }
   .main {
     height: 70vh;
