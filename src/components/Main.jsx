@@ -17,7 +17,7 @@ class Main extends React.Component {
         fetch('https://api.football-data.org/v1/competitions/398/teams', {
             headers: {'X-Auth-Token': '405e8d17c66e46e284d542c0fb7aacd5'},
             dataType: 'json'
-        }).then(r => r.json()).then(data => {
+        }).then(r => r.json()).then( data => {
             const chances = ((Math.random() * 10) + 1).toFixed(2);
             if (toString(chances).length > 4) {
                 Math.round(chances)
@@ -35,6 +35,7 @@ class Main extends React.Component {
     handleOption = (event) => {
         this.state.options.forEach((elem, i) => {
                 if (elem.name === event.target.value) {
+                    const link = elem._links
                     this.fetchOpponentsFromAPI(elem._links.fixtures.href);
                 }
             },
