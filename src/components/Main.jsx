@@ -146,7 +146,7 @@ class Main extends React.Component {
                     </p>
                 <Slider options={this.state.options} selectedTeam={this.handleOption}/>
 
-                <h2>Oponents</h2>
+                <p>Oponents</p>
 
                 <input className='main-form-input' type='text'
                        onChange={e => this.updateInput('newItem', e.target.value)}/>

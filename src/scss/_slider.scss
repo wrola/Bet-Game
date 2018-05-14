@@ -21,6 +21,37 @@
       }
     }
   }
+@media screen and (max-width: 380px) {
+  .main-form-slider {
+    display: flex;
+    justify-content: space-around;
+
+    .main-form-prev,
+    .main-form-next {
+
+    }
+    .main-form-slide {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      .main-form-slide-img {
+        width: 20px;
+        height: 20px;
+      }
+      .main-form-slide-title {
+        font-size: 1.5rem;
+      }
+    }
+  }
+
+}
+@media screen and (min-width: 426px) and (max-width: 840px) {
+
+}
+@media screen and (min-width: 841px){
+
+}
 
 
 

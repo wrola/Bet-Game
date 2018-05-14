@@ -1,3 +1,4 @@
+$color: var(--color1);
 
 .main-form {
   display: flex;
@@ -40,26 +41,152 @@
   background-color: var(--color2);
   align-items: center;
   .main-banner-el {
-    padding: 2%;
-    margin: 10px;
-    font-size: 1rem;
+    padding: 1%;
+    font-size: 0.8rem;
     width: 80%;
+    height: 80%;
     display: flex;
     align-items: center;
     justify-content: center;
     background-color: var(--color2);
     border: 1px solid var(--color1);
-    .main-banner-el:hover {
-      background-color: var(--color1);
-      border: 1px solid var(--color2);
+    &:hover {
+      background-color: lighten(#b2c5fa, 4%);
+      border: 1px solid var(--color1);
+      width: 90%;
+      height: 90%;
 
-      .main-banner-btn {
-        padding: 10%;
-        margin: 10%;
-        width: 100%;
+      transition: width 0.5s, height 0.5s ;
+    }
+    .main-banner-btn{
+      font-size: 1rem;
+    }
+  }
+}
+@media screen and (max-width: 380px) {
+  .main-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 5%;
+
+
+    .main-form-input {
+      height: 5vh;
+      padding: 5px 17px;
+      width: 80%;
+      font-size: 1.2rem;
+      transition: 0.5s all;
+      margin-top: 5%;
+    }
+    .main-form-btn {
+      width: 30%;
+      margin: 1% 1%;
+      font-size: 1.5rem;
+    }
+  }
+
+  .main-banner {
+    margin-top: 5%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .main-banner-el {
+      padding: 1%;
+      font-size: 0.8rem;
+      width: 80%;
+      height: 80%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       }
+      .main-banner-btn{
+        font-size: 1rem;
+      }
+    }
+  }
+@media screen and (min-width: 426px) and (max-width: 840px) {
+  .main-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 5%;
+
+
+    .main-form-input {
+      height: 5vh;
+      padding: 5px 17px;
+      width: 80%;
+      font-size: 1.2rem;
+      transition: 0.5s all;
+      margin-top: 5%;
+    }
+    .main-form-btn {
+      width: 30%;
+      margin: 1% 1%;
+      font-size: 1.5rem;
+    }
+  }
+
+  .main-banner {
+    margin-top: 5%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .main-banner-el {
+      padding: 1%;
+      font-size: 0.8rem;
+      width: 80%;
+      height: 80%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .main-banner-btn{
+      font-size: 1rem;
     }
   }
 }
 
+@media screen and (min-width: 841px) {
+  .main-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 5%;
 
+
+    .main-form-input {
+      height: 5vh;
+      padding: 5px 17px;
+      width: 80%;
+      font-size: 1.2rem;
+      transition: 0.5s all;
+      margin-top: 5%;
+    }
+    .main-form-btn {
+      width: 30%;
+      margin: 1% 1%;
+      font-size: 1.5rem;
+    }
+  }
+
+  .main-banner {
+    margin-top: 5%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .main-banner-el {
+      padding: 1%;
+      font-size: 0.8rem;
+      width: 80%;
+      height: 80%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .main-banner-btn{
+      font-size: 1rem;
+    }
+  }
+}
