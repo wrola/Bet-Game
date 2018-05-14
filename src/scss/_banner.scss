@@ -2,10 +2,6 @@ $color: var(--color1);
 
 .main-form {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  border-radius: 5px;
-  margin-top: 5%;
 
   .main-form-options {
     border: 1px solid var(--color1);
@@ -34,20 +30,14 @@ $color: var(--color1);
 }
 
 .main-banner {
-  margin-top: 5%;
   list-style: none;
   display: flex;
-  flex-direction: column;
   background-color: var(--color2);
-  align-items: center;
   .main-banner-el {
     padding: 1%;
     font-size: 0.8rem;
     width: 80%;
     height: 80%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     background-color: var(--color2);
     border: 1px solid var(--color1);
     &:hover {
@@ -63,9 +53,9 @@ $color: var(--color1);
     }
   }
 }
-@media screen and (max-width: 380px) {
+@media screen and (max-width: 425px) {
   .main-form {
-    display: flex;
+
     flex-direction: column;
     align-items: center;
     margin-top: 5%;
@@ -75,8 +65,6 @@ $color: var(--color1);
       height: 5vh;
       padding: 5px 17px;
       width: 80%;
-      font-size: 1.2rem;
-      transition: 0.5s all;
       margin-top: 5%;
     }
     .main-form-btn {
@@ -88,7 +76,6 @@ $color: var(--color1);
 
   .main-banner {
     margin-top: 5%;
-    display: flex;
     flex-direction: column;
     align-items: center;
     .main-banner-el {
@@ -96,7 +83,6 @@ $color: var(--color1);
       font-size: 0.8rem;
       width: 80%;
       height: 80%;
-      display: flex;
       align-items: center;
       justify-content: center;
       }
@@ -107,10 +93,10 @@ $color: var(--color1);
   }
 @media screen and (min-width: 426px) and (max-width: 840px) {
   .main-form {
-    display: flex;
     flex-direction: column;
     align-items: center;
     margin-top: 5%;
+
 
 
     .main-form-input {
@@ -118,7 +104,6 @@ $color: var(--color1);
       padding: 5px 17px;
       width: 80%;
       font-size: 1.2rem;
-      transition: 0.5s all;
       margin-top: 5%;
     }
     .main-form-btn {
@@ -130,7 +115,6 @@ $color: var(--color1);
 
   .main-banner {
     margin-top: 5%;
-    display: flex;
     flex-direction: column;
     align-items: center;
     .main-banner-el {
@@ -138,7 +122,6 @@ $color: var(--color1);
       font-size: 0.8rem;
       width: 80%;
       height: 80%;
-      display: flex;
       align-items: center;
       justify-content: center;
     }
@@ -150,10 +133,10 @@ $color: var(--color1);
 
 @media screen and (min-width: 841px) {
   .main-form {
-    display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: center ;
     margin-top: 5%;
+
 
 
     .main-form-input {
@@ -173,7 +156,6 @@ $color: var(--color1);
 
   .main-banner {
     margin-top: 5%;
-    display: flex;
     flex-direction: column;
     align-items: center;
     .main-banner-el {
@@ -181,7 +163,6 @@ $color: var(--color1);
       font-size: 0.8rem;
       width: 80%;
       height: 80%;
-      display: flex;
       align-items: center;
       justify-content: center;
     }
