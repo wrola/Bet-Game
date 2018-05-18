@@ -17,9 +17,7 @@ $color: var(--color1);
     padding: 0 17px;
     width: 80%;
     font-size: 1.2rem;
-    font-family: "Raleway", sans-serif;
     font-weight: 300;
-    transition: 0.5s all;
     margin-top: 5%;
   }
   .main-form-btn {
@@ -32,35 +30,45 @@ $color: var(--color1);
 .main-banner {
   list-style: none;
   display: flex;
-  background-color: var(--color2);
+
   .main-banner-el {
-    padding: 1%;
+    display: flex;
     font-size: 0.8rem;
-    width: 80%;
+    width: 90%;
     height: 80%;
-    background-color: var(--color2);
+    background-color: #eef2f9;
     border: 1px solid var(--color1);
     &:hover {
       background-color: lighten(#b2c5fa, 4%);
       border: 1px solid var(--color1);
-      width: 90%;
-      height: 90%;
-
-      transition: width 0.5s, height 0.5s ;
     }
-    .main-banner-btn{
-      font-size: 1rem;
+    .main-banner-el-title{
+
+    }
+    .main-banner-el-section {
+      display: flex;
+      .main-banner-btn{
+        font-size: 1rem;
+      }
+    }
+    .main-banner-el-footer{
+      display: flex;
     }
   }
 }
+  .main-form-prev,
+  .main-form-next{
+    background: transparent;
+    border:0;
+    color: #00134d;
+    transition: 0.5s color;
+    cursor:pointer;
+  }
 @media screen and (max-width: 425px) {
   .main-form {
-
     flex-direction: column;
     align-items: center;
     margin-top: 5%;
-
-
     .main-form-input {
       height: 5vh;
       padding: 5px 17px;
@@ -78,16 +86,29 @@ $color: var(--color1);
     margin-top: 5%;
     flex-direction: column;
     align-items: center;
+    width: 80%;
     .main-banner-el {
       padding: 1%;
       font-size: 0.8rem;
-      width: 80%;
+      width: 100%;
       height: 80%;
-      align-items: center;
+      flex-direction: column;
+      align-items: flex-start;
       justify-content: center;
       }
-      .main-banner-btn{
-        font-size: 1rem;
+      .main-banner-el-title{
+
+      }
+      .main-banner-el-section{
+        justify-content: space-between;
+        width: 100%;
+        .main-banner-btn{
+          font-size: 1rem;
+        }
+      }
+      .main-banner-el-footer{
+        justify-content: space-between;
+        width: 100%;
       }
     }
   }
@@ -115,18 +136,32 @@ $color: var(--color1);
 
   .main-banner {
     margin-top: 5%;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
+    width: 100%;
+    flex-wrap: wrap;
     .main-banner-el {
       padding: 1%;
       font-size: 0.8rem;
-      width: 80%;
+      width: 45%;
       height: 80%;
-      align-items: center;
+      flex-direction: column;
+      align-items: flex-start;
       justify-content: center;
     }
-    .main-banner-btn{
-      font-size: 1rem;
+    .main-banner-el-title{
+
+    }
+    .main-banner-el-section{
+      justify-content: space-between;
+      width: 100%;
+      .main-banner-btn{
+        font-size: 1rem;
+      }
+    }
+    .main-banner-el-footer{
+      justify-content: space-between;
+      width: 100%;
     }
   }
 }
@@ -136,7 +171,7 @@ $color: var(--color1);
     flex-direction: column;
     align-items: center ;
     margin-top: 5%;
-
+    flex-grow: 2;
 
 
     .main-form-input {
@@ -155,19 +190,50 @@ $color: var(--color1);
   }
 
   .main-banner {
-    margin-top: 5%;
-    flex-direction: column;
-    align-items: center;
+    margin-top: 1%;
+    flex-wrap: wrap;
+    flex-direction: row;
+    width: 50vw;
+    flex-grow: 1;
     .main-banner-el {
-      padding: 1%;
+      flex-direction: column;
+      justify-content: flex-start;
+      margin: 1%;
       font-size: 0.8rem;
-      width: 80%;
-      height: 80%;
-      align-items: center;
-      justify-content: center;
-    }
-    .main-banner-btn{
-      font-size: 1rem;
+      width: 30%;
+      height: 30%;
+      background-color: rgba(236, 241, 248, 0.58);
+      &:hover {
+        background-color: darken(rgba(236, 241, 248, 0.58), 8%);
+        border: 1px solid var(--color1);
+        box-shadow: white;
+        width: 30%;
+        height: 30%;
+        .main-banner-el-title{
+
+        }
+        .main-banner-el-section{
+          background-color: darken(rgb(255, 255, 255), 8%);
+        }
+      }
+      .main-banner-el-title{
+        font-size: 1rem;
+        padding-bottom: 10px;
+      }
+      .main-banner-el-section {
+        background-color: rgb(255, 255, 255);
+      }
+      .main-banner-el-icon{
+        width: 50%;
+        height: 50%;
+      }
+      .main-banner-btn{
+        align-self: flex-end;
+        font-size: 1rem;
+      }
+      .main-banner-el-footer{
+
+      }
     }
   }
 }

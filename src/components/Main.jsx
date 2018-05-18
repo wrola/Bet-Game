@@ -35,12 +35,11 @@ class Main extends React.Component {
     handleOption = (event) => {
         this.state.options.forEach((elem, i) => {
                 if (elem.name === event.target.value) {
-                    const link = elem._links
                     this.fetchOpponentsFromAPI(elem._links.fixtures.href);
                 }
             },
             this.setState({
-                team: event.target.value
+                team: event.target.value,
             })
         )
     }
@@ -137,9 +136,9 @@ class Main extends React.Component {
             }
         }
     }
-
     render() {
-        return <div className="main">
+            return(
+        <div className="main">
             <form type="submit" className='main-form'>
                     <p>
                         Choose a team
@@ -152,21 +151,34 @@ class Main extends React.Component {
                        onChange={e => this.updateInput('newItem', e.target.value)}/>
                 <button className='main-form-btn btn' type='button' onClick={() => this.addItem()}>BET</button>
             </form>
-
-            <ul className="main-banner">
+            {console.log(this.state.img)}
+            <section className="main-banner">
                     {this.state.list.map(item => {
                         return (
-                            <li className='main-banner-el' key={item.id}>
-                                I bet {item.value} for win {item.team} in game with {item.oponent} on {item.date}
-                            <button className='main-banner-btn btn' onClick={() => this.deleteItem(item.id)}>
-                                Remove
-                            </button>
+                            <div className='main-banner-el' key={item.id}>
+                                <div className="main-banner-el-title">Bet ticket
+                                fooball game </div>
+                                <div className="main-banner-el-section">
+                                        <p>{item.team} VS {item.oponent}</p>
+                                        <button className='main-banner-btn btn' onClick={() => this.deleteItem(item.id)}>
+                                        Remove
+                                        </button>
+                                </div>
+                                <div className="main-banner-el-footer">
+                                <p>
+                                    {item.date}
+                                </p>
+                                    <p>
+                                        Total value {item.value}
+                                    </p>
+                                </div>
 
-                        </li>
+                        </div>
                     );
                 })}
-            </ul>
+            </section>
         </div>
+            )
     }
 }
 
