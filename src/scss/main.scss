@@ -14,7 +14,9 @@
   margin: 0;
   padding: 0;
   body {
-    background: rgba(224, 227, 210, 0.8);
+    background: #00b09b;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #96c93d, #00b09b);
+    background: linear-gradient(to right, #96c93d, #00b09b);
     font-family: 'Oswald','Play', sans-serif;
     font-size: 20px;
     color: var(--color1);
@@ -24,7 +26,10 @@
   }
   .container {
     display: flex;
-    background-color: var(--color2);
+    background: #C9D6FF;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #E2E2E2, #C9D6FF);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #E2E2E2, #C9D6FF); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
   }
   .btn {
     color: var(--color1);
@@ -114,7 +119,7 @@
 
 @media screen and (min-width: 841px) {
   #app {
-    height: auto;
+    height: 100vh;
     justify-content: space-around;
     align-items: center;
   }
@@ -122,8 +127,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 90%;
-    width: 90vw;
+    width: 100%;
   }
   .main {
     height: auto;
